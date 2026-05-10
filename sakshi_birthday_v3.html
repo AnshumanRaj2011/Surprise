@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>For My Sweetheart Sakshi 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rose:        #ff2d6b;
+      --rose-mid:    #ff5c8a;
+      --rose-light:  #ff8fab;
+      --rose-pale:   #ffd6e7;
+      --blush:       #fff0f5;
+      --gold:        #f5c77e;
+      --gold-dark:   #d4910e;
+      --white:       #ffffff;
+      --deep-rose:   #c0183c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body, html {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(160deg, #ff6b9d 0%, #ff4d79 35%, #ff2d6b 70%, #e8305a 100%);
+      color: #fff;
+    }
+
+    /* ── BG BUBBLES ── */
+    .bg-bubble {
+      position: fixed; border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      pointer-events: none; z-index: 0;
+      animation: bubbleDrift var(--bd, 18s) ease-in-out infinite alternate;
+    }
+    @keyframes bubbleDrift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(var(--bx,20px), var(--by,-30px)) scale(1.08); }
+    }
+
+    /* ── PAGES ── */
+    .page {
+      position: absolute; inset: 0; z-index: 1;
+      display: none; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 28px 22px; text-align: center;
+      overflow-y: auto;
+    }
+    .page.active { display: flex; }
+    .page.enter  { animation: pgIn  .65s cubic-bezier(.22,1,.36,1) both; }
+    .page.exit   { animation: pgOut .45s cubic-bezier(.55,0,.45,1) both; }
+    @keyframes pgIn  { from { opacity:0; transform:translateY(28px) scale(.97); } to { opacity:1; transform:none; } }
+    @keyframes pgOut { from { opacity:1; } to { opacity:0; transform:translateY(-18px); } }
+
+    /* ── TYPOGRAPHY ── */
+    .font-pacifico { font-family: 'Pacifico', cursive; }
+    .font-serif    { font-family: 'Cormorant Garamond', serif; }
+
+    .title-xl {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2rem, 8vw, 3.2rem);
+      line-height: 1.2;
+      color: #fff;
+      text-shadow: 0 4px 24px rgba(160,0,60,.35), 0 1px 0 rgba(255,255,255,.3);
+    }
+    .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 4vw, 1.3rem);
+      color: rgba(255,240,248,.85);
+      margin-top: 6px;
+    }
+
+    /* ── GLASS CARD ── */
+    .glass {
+      background: rgba(255,255,255,.18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 26px;
+      padding: 32px 28px;
+      max-width: 480px; width: 100%;
+      box-shadow: 0 18px 50px rgba(180,0,60,.2), inset 0 1px 0 rgba(255,255,255,.18);
+    }
+    .glass p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.05rem, 4.5vw, 1.3rem);
+      line-height: 1.75; color: #fff;
+      margin-bottom: 10px;
+    }
+    .hl {
+      color: var(--gold);
+      font-weight: 700;
+      border-bottom: 1.5px solid rgba(245,199,126,.5);
+    }
+    .divider {
+      width: 56px; height: 2px; margin: 14px auto;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* ── BUTTON ── */
+    .btn {
+      position: relative; overflow: hidden;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      background: linear-gradient(135deg, var(--deep-rose), var(--rose));
+      color: #fff; padding: 14px 40px;
+      border: 1.5px solid rgba(255,255,255,.3);
+      border-radius: 60px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: .9rem;
+      letter-spacing: .07em; text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 6px 22px rgba(192,24,60,.45), inset 0 1px 0 rgba(255,255,255,.15);
+      transition: transform .18s, box-shadow .18s;
+      margin-top: 24px;
+    }
+    .btn::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.2), transparent);
+      opacity: 0; transition: opacity .2s;
+    }
+    .btn:hover::after { opacity: 1; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(192,24,60,.55); }
+    .btn:active { transform: scale(.96); }
+
+    /* ── PROGRESS DOTS ── */
+    .dots {
+      position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 10;
+    }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,.28);
+      transition: background .35s, transform .3s;
+    }
+    .dot.on { background: #fff; transform: scale(1.5); }
+
+    /* ═══════════════════════════════════════
+       PAGE 1 — WELCOME
+    ═══════════════════════════════════════ */
+    #p1 .envelope {
+      font-size: 5rem; margin-bottom: 18px;
+      animation: envFloat 3s ease-in-out infinite;
+      filter: drop-shadow(0 8px 24px rgba(180,0,60,.4));
+    }
+    @keyframes envFloat {
+      0%,100% { transform: translateY(0) rotate(-3deg); }
+      50%      { transform: translateY(-14px) rotate(3deg); }
+    }
+
+    /* ═══════════════════════════════════════
+       PAGE 2 — STORY
+    ═══════════════════════════════════════ */
+    .date-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: #4a1a00; padding: 5px 20px; border-radius: 40px;
+      font-weight: 800; font-size: .8rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      box-shadow: 0 4px 14px rgba(212,145,14,.45);
+      margin-bottom: 20px;
+    }
+    .big-center {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.4rem, 6vw, 2rem);
+      color: var(--gold);
+      margin: 14px 0;
+      text-shadow: 0 2px 12px rgba(180,80,0,.3);
+    }
+
+    /* ═══════════════════════════════════════
+       PAGE 3 — CAKE
+    ═══════════════════════════════════════ */
+    .cake-scene {
+      position: relative;
+      width: 280px; margin: 8px auto;
+      cursor: pointer; -webkit-tap-highlight-color: transparent;
+    }
+    #cakeSVG { width: 280px; height: 310px; overflow: visible; display: block; }
+
+    .fl-outer {
+      transform-origin: 50% 100%;
+      animation: flick .13s ease-in-out infinite alternate;
+    }
+    .fl-inner {
+      transform-origin: 50% 100%;
+      animation: flick .13s ease-in-out .065s infinite alternate;
+    }
+    @keyframes flick {
+      0%   { transform: scaleX(1)    scaleY(1)    skewX(-1deg); }
+      100% { transform: scaleX(.87)  scaleY(1.09) skewX(2deg); }
+    }
+    .fl-glow { animation: glowP .75s ease-in-out infinite alternate; }
+    @keyframes glowP { from { opacity:.45; } to { opacity:1; } }
+
+    .smoke-dot { opacity:0; }
+    .smoke-dot.go { animation: smokeUp 1.5s ease-out var(--sd,0s) forwards; }
+    @keyframes smokeUp {
+      0%   { opacity:.75; transform: translateY(0)    scale(.5); }
+      100% { opacity:0;   transform: translateY(-60px) scale(3); }
+    }
+
+    .wish-reveal {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1rem, 5vw, 1.4rem);
+      color: #fff;
+      text-shadow: 0 2px 14px rgba(180,0,60,.4);
+      display: none;
+      animation: wishIn .9s cubic-bezier(.22,1,.36,1) both;
+      margin-bottom: 4px;
+    }
+    @keyframes wishIn {
+      from { opacity:0; transform:translateY(16px) scale(.87); filter:blur(8px); }
+      to   { opacity:1; transform:none; filter:blur(0); }
+    }
+
+    .tap-ripple {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,.28);
+      pointer-events: none;
+      animation: rplOut .65s ease-out both;
+    }
+    @keyframes rplOut { to { transform: scale(5); opacity:0; } }
+
+    /* ═══════════════════════════════════════
+       PAGE 4 — PHOTO CARDS
+    ═══════════════════════════════════════ */
+    .cards-section {
+      width: 100%; max-width: 360px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .card-counter {
+      font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,240,248,.6); margin-bottom: 12px;
+    }
+    .card-stack {
+      position: relative;
+      width: 260px; height: 310px;
+      margin-bottom: 16px;
+    }
+    .photo-card {
+      position: absolute; inset: 0;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #ffd6e7;
+      border: 3px solid rgba(255,255,255,.55);
+      box-shadow: 0 12px 36px rgba(180,0,60,.28), 0 2px 6px rgba(0,0,0,.1);
+      cursor: grab; -webkit-tap-highlight-color: transparent;
+      transition: box-shadow .2s;
+      user-select: none;
+      touch-action: none;
+    }
+    .photo-card:active { cursor: grabbing; }
+    .photo-card img {
+      width: 100%; height: 80%; object-fit: cover; display: block;
+      pointer-events: none;
+    }
+    .card-caption {
+      height: 20%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,.92);
+      color: var(--rose);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(.95rem, 3.5vw, 1.1rem);
+      padding: 0 12px; text-align: center;
+      font-weight: 600;
+    }
+    /* stack peek effect for cards behind */
+    .photo-card:nth-child(2) { transform: rotate(3deg) scale(.96) translateY(6px); z-index: 0; }
+    .photo-card:nth-child(3) { transform: rotate(-2.5deg) scale(.92) translateY(12px); z-index: -1; }
+    .photo-card.top         { z-index: 2; }
+
+    .card-hint {
+      font-size: .76rem; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,240,248,.5); margin-bottom: 4px;
+    }
+    /* swipe away animation */
+    .swipe-left  { animation: swipeL .45s cubic-bezier(.55,0,.45,1) both; }
+    .swipe-right { animation: swipeR .45s cubic-bezier(.55,0,.45,1) both; }
+    @keyframes swipeL { to { transform: translateX(-160%) rotate(-20deg); opacity:0; } }
+    @keyframes swipeR { to { transform: translateX(160%)  rotate(20deg);  opacity:0; } }
+
+    /* ═══════════════════════════════════════
+       PAGE 5 — FINAL
+    ═══════════════════════════════════════ */
+    #p5 .final-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.7rem, 7vw, 2.5rem);
+      line-height: 1.2; color: #fff;
+      text-shadow: 0 4px 20px rgba(160,0,60,.4);
+      margin-bottom: 8px;
+    }
+    #p5 .love-msg {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.05rem, 4.5vw, 1.28rem);
+      line-height: 1.78; color: rgba(255,255,255,.9);
+      margin: 16px 0 22px;
+    }
+    #p5 .love-msg em { color: var(--gold); font-style: italic; }
+
+    #wish-text {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1rem, 4.5vw, 1.35rem);
+      color: var(--gold);
+      text-shadow: 0 2px 12px rgba(180,80,0,.4);
+      margin-top: 14px; display: none;
+      animation: wishIn .9s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    /* ═══════════════════════════════════════
+       HEARTS
+    ═══════════════════════════════════════ */
+    .heart {
+      position: fixed; pointer-events: none; z-index: 999;
+      animation: heartUp var(--hd,4s) linear var(--hdl,0s) both;
+    }
+    @keyframes heartUp {
+      0%   { transform: translateY(110vh) scale(var(--hs,.8)) rotate(var(--hr,0deg)); opacity:.9; }
+      80%  { opacity:.6; }
+      100% { transform: translateY(-12vh) scale(calc(var(--hs,.8)*1.2)) rotate(calc(var(--hr,0deg)+15deg)); opacity:0; }
+    }
+
+    /* confetti */
+    .cf {
+      position: fixed; top: -20px; pointer-events: none; border-radius: 2px;
+      animation: cfFall var(--cd,3s) linear var(--cdl,0s) both;
+    }
+    @keyframes cfFall {
+      0%   { transform: translateY(0) rotate(0deg); opacity:1; }
+      100% { transform: translateY(108vh) rotate(720deg); opacity:0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background bubbles -->
+<script>
+  const bCfg=[
+    {w:220,t:5,l:'-5%',bd:20,bx:'25px',by:'-35px'},
+    {w:160,t:55,l:'80%',bd:16,bx:'-20px',by:'28px'},
+    {w:280,t:75,l:'10%',bd:24,bx:'18px',by:'-20px'},
+    {w:120,t:20,l:'70%',bd:14,bx:'22px',by:'-28px'},
+    {w:200,t:40,l:'45%',bd:22,bx:'-24px',by:'30px'},
+  ];
+  bCfg.forEach(c=>{
+    const d=document.createElement('div');
+    d.className='bg-bubble';
+    d.style.cssText=`width:${c.w}px;height:${c.w}px;top:${c.t}%;left:${c.l};--bd:${c.bd}s;--bx:${c.bx};--by:${c.by}`;
+    document.body.appendChild(d);
+  });
+</script>
+
+<!-- Audio -->
+<audio id="bg-music"  loop><source src="instrumental.mp3"  type="audio/mpeg"></audio>
+<audio id="wish-audio"><source src="happy_birthday.mp3"    type="audio/mpeg"></audio>
+
+<!-- Progress dots -->
+<div class="dots">
+  <div class="dot on"  id="dt0"></div>
+  <div class="dot"     id="dt1"></div>
+  <div class="dot"     id="dt2"></div>
+  <div class="dot"     id="dt3"></div>
+  <div class="dot"     id="dt4"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 1 – WELCOME
+══════════════════════════════════════════ -->
+<section class="page active" id="p1" data-step="0">
+  <div class="envelope">💌</div>
+  <h1 class="title-xl">Welcome, Sakshi</h1>
+  <p class="subtitle">A little surprise, made just for you...</p>
+  <div class="divider" style="margin-top:18px;"></div>
+  <button class="btn" onclick="goTo('p2')">Open the Surprise ✨</button>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PAGE 2 – STORY
+══════════════════════════════════════════ -->
+<section class="page" id="p2" data-step="1">
+  <div class="glass">
+    <div class="date-pill">16th May</div>
+    <p>Today is a day that changed my world.</p>
+    <div class="divider"></div>
+    <p>Because on this day, the universe decided to send someone extraordinary here...</p>
+    <div class="big-center">You were born. ✨</div>
+    <p style="font-size:.98rem; color:rgba(255,240,248,.82);">And every single day since then has been a little more beautiful because of you.</p>
+  </div>
+  <button class="btn" onclick="goTo('p3')">Continue →</button>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PAGE 3 – CAKE
+══════════════════════════════════════════ -->
+<section class="page" id="p3" data-step="2">
+  <p id="cake-label" class="subtitle" style="margin-bottom:4px; font-size:clamp(1rem,4.5vw,1.3rem);">Tap the cake &amp; make a wish 🎂</p>
+
+  <div class="cake-scene" id="cakeScene" onclick="blowCandle(event)">
+    <svg id="cakeSVG" viewBox="0 0 280 310" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gBase" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#ffb3c6"/>
+          <stop offset="100%" stop-color="#e06080"/>
+        </linearGradient>
+        <linearGradient id="gMid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#ffd6e0"/>
+          <stop offset="100%" stop-color="#e88a9a"/>
+        </linearGradient>
+        <linearGradient id="gTop" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="#ffe4ef"/>
+          <stop offset="100%" stop-color="#e0a0b8"/>
+        </linearGradient>
+        <linearGradient id="gIce" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"  stop-color="rgba(255,255,255,.9)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+        <radialGradient id="gFlame" cx="50%" cy="100%" r="100%">
+          <stop offset="0%"  stop-color="#fff8aa"/>
+          <stop offset="40%" stop-color="#ff9800"/>
+          <stop offset="75%" stop-color="#e8305a"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <pattern id="cStripe" x="0" y="0" width="12" height="10" patternUnits="userSpaceOnUse">
+          <rect width="12" height="10" fill="#ffd166"/>
+          <rect y="5" width="12" height="5" fill="#fff8e1"/>
+        </pattern>
+      </defs>
+
+      <!-- Plate -->
+      <ellipse cx="140" cy="296" rx="115" ry="14" fill="#e090a8" opacity=".8"/>
+      <ellipse cx="140" cy="291" rx="122" ry="10" fill="url(#gBase)" opacity=".55"/>
+
+      <!-- Base tier -->
+      <rect x="28" y="208" width="224" height="84" rx="11" fill="url(#gBase)"/>
+      <rect x="28" y="270" width="224" height="22" rx="0" fill="rgba(0,0,0,.06)"/>
+      <ellipse cx="140" cy="210" rx="106" ry="10" fill="url(#gIce)" opacity=".85"/>
+      <text x="140" y="256" text-anchor="middle" fill="rgba(255,255,255,.52)" font-size="13" font-family="serif" letter-spacing="13">♥ ♥ ♥ ♥</text>
+      <line x1="50"  y1="277" x2="230" y2="277" stroke="rgba(255,255,255,.28)" stroke-width="1" stroke-dasharray="4 4"/>
+      <!-- base rosettes -->
+      <circle cx="60"  cy="238" r="6" fill="rgba(255,255,255,.32)"/>
+      <circle cx="60"  cy="238" r="3" fill="rgba(255,255,255,.62)"/>
+      <circle cx="220" cy="238" r="6" fill="rgba(255,255,255,.32)"/>
+      <circle cx="220" cy="238" r="3" fill="rgba(255,255,255,.62)"/>
+      <circle cx="90"  cy="250" r="2.5" fill="rgba(255,255,255,.5)"/>
+      <circle cx="190" cy="247" r="2"   fill="rgba(255,255,255,.5)"/>
+      <circle cx="120" cy="260" r="2"   fill="rgba(255,255,255,.4)"/>
+      <circle cx="165" cy="258" r="2"   fill="rgba(255,255,255,.4)"/>
+
+      <!-- Mid tier -->
+      <rect x="67" y="144" width="146" height="67" rx="11" fill="url(#gMid)"/>
+      <rect x="67" y="194" width="146" height="17" rx="0" fill="rgba(0,0,0,.05)"/>
+      <ellipse cx="140" cy="146" rx="67" ry="9" fill="url(#gIce)" opacity=".8"/>
+      <text x="140" y="186" text-anchor="middle" fill="rgba(255,255,255,.52)" font-size="11" font-family="serif" letter-spacing="11">✿ ✿ ✿</text>
+      <circle cx="82"  cy="170" r="5"   fill="rgba(255,255,255,.28)"/>
+      <circle cx="82"  cy="170" r="2.5" fill="rgba(255,255,255,.6)"/>
+      <circle cx="198" cy="170" r="5"   fill="rgba(255,255,255,.28)"/>
+      <circle cx="198" cy="170" r="2.5" fill="rgba(255,255,255,.6)"/>
+
+      <!-- Top tier -->
+      <rect x="99" y="99" width="82" height="48" rx="11" fill="url(#gTop)"/>
+      <rect x="99" y="131" width="82" height="16" rx="0" fill="rgba(0,0,0,.04)"/>
+      <ellipse cx="140" cy="101" rx="35" ry="7" fill="url(#gIce)" opacity=".75"/>
+
+      <!-- Topper flag -->
+      <line x1="140" y1="99" x2="140" y2="70" stroke="#e88a9a" stroke-width="1.5"/>
+      <polygon points="140,70 160,77 140,84" fill="#ff6b8a" opacity=".85"/>
+
+      <!-- Candle -->
+      <rect x="133" y="55" width="14" height="47" rx="3" fill="url(#cStripe)"/>
+      <line x1="140" y1="48" x2="140" y2="56" stroke="#5a3a1a" stroke-width="1.8" stroke-linecap="round"/>
+
+      <!-- Flame group -->
+      <g id="flameG">
+        <circle class="fl-glow" cx="140" cy="40" r="17" fill="rgba(255,160,0,.38)"/>
+        <ellipse class="fl-outer" cx="140" cy="40" rx="10" ry="19" fill="url(#gFlame)"/>
+        <ellipse class="fl-inner" cx="140" cy="44" rx="4.5" ry="9.5" fill="rgba(255,255,220,.95)"/>
+        <!-- smoke dots -->
+        <circle class="smoke-dot" id="sd1" cx="138" cy="22" r="4"   fill="rgba(255,255,255,.7)" style="--sd:0s"/>
+        <circle class="smoke-dot" id="sd2" cx="143" cy="17" r="3"   fill="rgba(255,255,255,.55)" style="--sd:.3s"/>
+        <circle class="smoke-dot" id="sd3" cx="136" cy="12" r="3.5" fill="rgba(255,255,255,.45)" style="--sd:.58s"/>
+      </g>
+    </svg>
+    <div id="rippleCont" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:12px;"></div>
+  </div>
+
+  <div id="afterCake" style="display:none; text-align:center;">
+    <p class="wish-reveal" id="wishReveal" style="display:block;">I Wish You a Very Very Happy Birthday! 🎉</p>
+    <button class="btn" onclick="goTo('p4')">See Our Moments →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PAGE 4 – PHOTO CARDS
+══════════════════════════════════════════ -->
+<section class="page" id="p4" data-step="3">
+  <h2 class="subtitle" style="font-size:clamp(1.1rem,4.5vw,1.35rem); -webkit-text-fill-color:inherit; margin-bottom:12px;">Our Beautiful Moments 📸</h2>
+
+  <div class="cards-section">
+    <p class="card-counter" id="cardCounter">1 / 6</p>
+    <div class="card-stack" id="cardStack">
+      <!-- cards injected by JS -->
+    </div>
+    <p class="card-hint">← swipe or drag →</p>
+  </div>
+
+  <button class="btn" id="nextBtn4" onclick="goTo('p5')" style="display:none; margin-top:14px;">A Final Surprise 💌</button>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PAGE 5 – FINAL MESSAGE
+══════════════════════════════════════════ -->
+<section class="page" id="p5" data-step="4">
+  <div class="glass" style="text-align:center;">
+    <h1 class="final-title">Happy Birthday,<br>Sakshi! 🎂</h1>
+    <div class="divider"></div>
+    <p class="love-msg">
+      I tried to find the perfect words for you,<br>
+      but <em>no words are as beautiful as you are.</em><br><br>
+      You're not just the sweetest person in the world to me —<br>
+      <em>you are my world.</em><br><br>
+      May your day be as magical as the feeling of being by your side. ❤️
+    </p>
+    <button class="btn" id="wishBtn" onclick="showWish()">✨ A Wish For You ✨</button>
+    <p id="wish-text">— Yours Lovingly, Anshuman 💕</p>
+  </div>
+</section>
+
+<script>
+/* ══════════════════════════════════════════
+   PAGE NAVIGATION
+══════════════════════════════════════════ */
+const ORDER = ['p1','p2','p3','p4','p5'];
+let current = 'p1';
+
+function goTo(id) {
+  const music = document.getElementById('bg-music');
+  if (music.paused) music.play().catch(()=>{});
+
+  const out = document.getElementById(current);
+  const inn = document.getElementById(id);
+  out.classList.add('exit');
+  setTimeout(()=>{
+    out.classList.remove('active','exit');
+    inn.classList.add('active','enter');
+    current = id;
+    updateDots();
+    if (id === 'p4') initCards();
+  }, 420);
+}
+
+function updateDots() {
+  const step = +document.getElementById(current).dataset.step;
+  for(let i=0;i<5;i++) document.getElementById('dt'+i).classList.toggle('on', i===step);
+}
+
+/* ══════════════════════════════════════════
+   BLOW CANDLE
+══════════════════════════════════════════ */
+let blown = false;
+function blowCandle(e) {
+  if (blown) return;
+  blown = true;
+
+  // ripple
+  const rc   = document.getElementById('rippleCont');
+  const rect = document.getElementById('cakeScene').getBoundingClientRect();
+  const rpl  = document.createElement('div');
+  rpl.className = 'tap-ripple';
+  const x = (e.clientX ?? rect.left + rect.width/2) - rect.left;
+  const y = (e.clientY ?? rect.top  + rect.height/2) - rect.top;
+  rpl.style.cssText = `width:55px;height:55px;left:${x-27}px;top:${y-27}px`;
+  rc.appendChild(rpl);
+  setTimeout(()=>rpl.remove(), 750);
+
+  // blow out
+  const fg = document.getElementById('flameG');
+  fg.style.transition = 'transform .45s ease, opacity .45s ease';
+  fg.style.transform  = 'translateY(-18px) scale(0)';
+  fg.style.opacity    = '0';
+
+  setTimeout(()=>{
+    fg.style.display = 'none';
+    ['sd1','sd2','sd3'].forEach(id => document.getElementById(id).classList.add('go'));
+    spawnConfetti(55);
+    // show wish
+    document.getElementById('afterCake').style.display = 'block';
+    // change label
+    const lbl = document.getElementById('cake-label');
+    lbl.style.transition = 'opacity .3s';
+    lbl.style.opacity = '0';
+    setTimeout(()=>{ lbl.textContent = ''; }, 300);
+  }, 460);
+}
+
+/* ══════════════════════════════════════════
+   PHOTO CARDS
+══════════════════════════════════════════ */
+const CAPTIONS = [
+  'A smile that lights up everything 🌸',
+  'Pure happiness, right here 💕',
+  'My favourite chapter ✨',
+  'You make every moment magical 🌷',
+  'Sunshine in human form ☀️',
+  'Forever my favourite person ❤️',
+];
+const PHOTOS = ['1.jpg','2.jpg','3.jpg','4.jpg','5.png','6.jpg'];
+let cardIndex = 0;
+let cardsInited = false;
+const TOTAL = PHOTOS.length;
+
+function initCards() {
+  if (cardsInited) return;
+  cardsInited = true;
+
+  const stack = document.getElementById('cardStack');
+  // build cards in reverse so first is on top
+  for (let i = TOTAL-1; i >= 0; i--) {
+    const card = document.createElement('div');
+    card.className = 'photo-card' + (i===0 ? ' top' : '');
+    card.dataset.idx = i;
+    card.innerHTML = `<img src="${PHOTOS[i]}" alt="Moment ${i+1}" draggable="false">
+      <div class="card-caption">${CAPTIONS[i]}</div>`;
+    stack.appendChild(card);
+  }
+
+  bindCardDrag();
+  updateCounter();
+}
+
+function updateCounter() {
+  document.getElementById('cardCounter').textContent = `${cardIndex+1} / ${TOTAL}`;
+}
+
+function bindCardDrag() {
+  const stack = document.getElementById('cardStack');
+
+  let startX, startY, dragging = false, topCard = null;
+
+  function getTop() {
+    return stack.querySelector('.photo-card.top');
+  }
+
+  function onStart(x, y) {
+    topCard = getTop();
+    if (!topCard) return;
+    startX = x; startY = y; dragging = true;
+    topCard.style.transition = 'none';
+  }
+  function onMove(x, y) {
+    if (!dragging || !topCard) return;
+    const dx = x - startX, dy = y - startY;
+    const rot = dx * 0.08;
+    topCard.style.transform = `translate(${dx}px, ${dy*0.4}px) rotate(${rot}deg)`;
+    topCard.style.boxShadow = `0 18px 50px rgba(180,0,60,.38)`;
+  }
+  function onEnd(x) {
+    if (!dragging || !topCard) return;
+    dragging = false;
+    const dx = x - startX;
+    topCard.style.transition = '';
+
+    if (Math.abs(dx) > 70) {
+      dismissCard(topCard, dx > 0 ? 'right' : 'left');
+    } else {
+      topCard.style.transform = '';
+      topCard.style.boxShadow = '';
+    }
+    topCard = null;
+  }
+
+  // touch
+  stack.addEventListener('touchstart', e => { onStart(e.touches[0].clientX, e.touches[0].clientY); }, {passive:true});
+  window.addEventListener('touchmove',  e => { if(dragging) onMove(e.touches[0].clientX, e.touches[0].clientY); }, {passive:true});
+  window.addEventListener('touchend',   e => { onEnd(e.changedTouches[0].clientX); });
+  // mouse
+  stack.addEventListener('mousedown',  e => { onStart(e.clientX, e.clientY); });
+  window.addEventListener('mousemove', e => { if(dragging) onMove(e.clientX, e.clientY); });
+  window.addEventListener('mouseup',   e => { onEnd(e.clientX); });
+}
+
+function dismissCard(card, dir) {
+  card.classList.remove('top');
+  card.classList.add(dir === 'right' ? 'swipe-right' : 'swipe-left');
+  cardIndex++;
+  updateCounter();
+
+  // promote next card to top
+  setTimeout(()=>{
+    card.remove();
+    const stack = document.getElementById('cardStack');
+    const remaining = stack.querySelectorAll('.photo-card');
+    if (remaining.length > 0) {
+      // remove stacked transforms from now-top card
+      const newTop = remaining[remaining.length-1];
+      newTop.classList.add('top');
+      newTop.style.transition = 'transform .35s cubic-bezier(.22,1,.36,1)';
+      newTop.style.transform  = '';
+      setTimeout(()=>{ newTop.style.transition=''; }, 380);
+    }
+    if (cardIndex >= TOTAL) {
+      document.getElementById('nextBtn4').style.display = 'inline-flex';
+      document.getElementById('cardCounter').textContent = 'All done! 🎉';
+    } else {
+      updateCounter();
+    }
+  }, 450);
+}
+
+/* ══════════════════════════════════════════
+   FINAL WISH
+══════════════════════════════════════════ */
+function showWish() {
+  const music = document.getElementById('bg-music');
+  const wish  = document.getElementById('wish-audio');
+  music.pause(); music.currentTime = 0;
+  wish.play().catch(()=>{});
+  document.getElementById('wishBtn').style.display = 'none';
+  document.getElementById('wish-text').style.display = 'block';
+  spawnConfetti(80);
+  spawnHeartBurst(18);
+}
+
+/* ══════════════════════════════════════════
+   CONFETTI
+══════════════════════════════════════════ */
+const CF_COLS = ['#e8305a','#ff6b8a','#ffd166','#fff','#ffb3c6','#f5c77e','#ffc0cb','#ff85a1'];
+function spawnConfetti(n) {
+  for (let i=0; i<n; i++) {
+    const el = document.createElement('div');
+    el.className = 'cf';
+    const s = Math.random()*8+5, c = CF_COLS[Math.floor(Math.random()*CF_COLS.length)];
+    el.style.cssText = `left:${Math.random()*100}vw;width:${s}px;height:${s}px;background:${c};border-radius:${Math.random()>.5?'50%':'2px'};--cd:${2+Math.random()*2.2}s;--cdl:${Math.random()*.9}s;transform:rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 4800);
+  }
+}
+
+/* ══════════════════════════════════════════
+   FLOATING HEARTS
+══════════════════════════════════════════ */
+const HRT = ['❤️','🌸','💕','💗','💖','🌷','✨','🩷'];
+function spawnHeart() {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.textContent = HRT[Math.floor(Math.random()*HRT.length)];
+  h.style.cssText = `left:${Math.random()*100}vw;font-size:${Math.random()*14+11}px;--hd:${3.5+Math.random()*3}s;--hdl:${Math.random()*.4}s;--hs:${.7+Math.random()*.5};--hr:${(Math.random()-.5)*18}deg`;
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(), 7500);
+}
+setInterval(spawnHeart, 650);
+
+function spawnHeartBurst(n) {
+  for(let i=0;i<n;i++) setTimeout(spawnHeart, i*90);
+}
+</script>
+</body>
+</html>
